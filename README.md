@@ -1,4 +1,4 @@
-This is the **Master brunch**. Here, we can write any text using *Markdown* [(https://guides.github.com/features/mastering-markdown/)] The best website to get started is the following one: [(https://guides.github.com/activities/hello-world/
+This is the **Master brunch**. Here, we can write any text using *Markdown* [(https://guides.github.com/features/mastering-markdown/)] A really short interduction to get started with gethub is the following one: [(https://guides.github.com/activities/hello-world/
 )]. 
 
 
