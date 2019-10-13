@@ -12,13 +12,13 @@ array=np.zeros((3,5))
 
 
 **R code examples**
-```
+```ruby
 x<-c(1,2,3)
 a<-data.frame(5,x,6)
 a
 ```
 
 
-BLiblablooooo
+BLIBLABLOOOOOOOOO
 
 
