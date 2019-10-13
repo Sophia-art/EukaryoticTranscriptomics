@@ -5,7 +5,7 @@ This is the **Master brunch**. Here, we can write any text using *Markdown* [(ht
 
 
 **Python code examples** 
-```
+```ruby
 import numpy as np
 array=np.zeros((3,5))
 ```
