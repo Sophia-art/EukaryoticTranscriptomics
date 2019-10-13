@@ -14,3 +14,6 @@ x<-c(1,2,3)
 a<-data.frame(5,x,6)
 a
 
+if (isAwesome){
+  return true
+}
