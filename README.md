@@ -6,14 +6,11 @@ This is the **Master brunch**. Here, we can write any text using *Markdown* [(ht
 
 **Python code examples** 
 import numpy as np
-
 array=np.zeros((3,5))
 
 
 **R code examples**
 x<-c(1,2,3)
-
 a<-data.frame(5,x,6)
-
 a
 
