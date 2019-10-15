@@ -16,7 +16,8 @@ df = pd.read_csv('raw_countstdl.sec',sep='\t',index_col=False)
 df.rename(columns = {'Unnamed: 0':'Entry'} ,inplace=True)
 ```
 
-**2. Differential Expression Analysis by edgeR [https://bioinformatics-core-shared-training.github.io/cruk-bioinf-sschool/Day3/Supplementary-RNAseq-practical.pdf]**
+**2. Differential Expression Analysis by edgeR**<br/>
+[https://bioinformatics-core-shared-training.github.io/cruk-bioinf-sschool/Day3/Supplementary-RNAseq-practical.pdf]<br/>
 **2.1. Normalizing data by total count**
 *Why?*
 ```ruby
@@ -35,7 +36,7 @@ df.apply(lambda x: (sum(x))*1000000,axis=0)
 
 *Or is sum(x) not constant but is the sum of all data of the column till the element (iterating from row 0 till the last row)?* 
 
-**2.2. Filtering data**
+**2.2. Filtering data**<br/>
 Why? *Because we want to kick out data, where there is no count*
 
 ```ruby
@@ -46,7 +47,7 @@ keep = data_func[data_func[data_func > 100].sum(1) >=4]
 **2.3. Normalizing with TMM (trimmed mean of M values as a normalization factor)**
 Why? *Because we assume, that the majority of genes, in both the treated and untreated samples, are not differentially expressed*
 
-**2.4. Data exploration**
+**2.4. Data exploration**<br/>
 **2.5. Estimating the dispersion**
 
 Feature Count
