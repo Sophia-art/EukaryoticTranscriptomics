@@ -2,23 +2,10 @@ This is the **Master branch**. Here, we can write any text using *Markdown* [(ht
 )]. 
 
 
-
-
-**Python code examples** 
+**This is the code from Dimitri**
 ```ruby
-import numpy as np
-array=np.zeros((3,5))
+"import pandas as pd\n",
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt"
 ```
-
-
-**R code examples**
-```ruby
-x<-c(1,2,3)
-a<-data.frame(5,x,6)
-a
-```
-
-
-BLIBLABLOOOOOOOOO
-
 
