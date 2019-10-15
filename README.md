@@ -50,4 +50,4 @@ Why? *Because we assume, that the majority of genes, in both the treated and unt
 **2.4. Data exploration**<br/>
 **2.5. Estimating the dispersion**
 
-Feature Count
+
