@@ -18,7 +18,7 @@ df.rename(columns = {'Unnamed: 0':'Entry'} ,inplace=True)
 
 **2. Differential Expression Analysis by edgeR**<br/>
 [https://bioinformatics-core-shared-training.github.io/cruk-bioinf-sschool/Day3/Supplementary-RNAseq-practical.pdf]<br/>
-**2.1. Normalizing data by total count**
+**2.1. Normalizing data by total count**<br/>
 *Why?*
 ```ruby
 data_func=data.apply(lambda x: (x/sum(x))*1000000,axis=0)
@@ -44,7 +44,7 @@ keep = data_func[data_func[data_func > 100].sum(1) >=4]
 ```
 
 
-**2.3. Normalizing with TMM (trimmed mean of M values as a normalization factor)**
+**2.3. Normalizing with TMM (trimmed mean of M values as a normalization factor)**<br/>
 Why? *Because we assume, that the majority of genes, in both the treated and untreated samples, are not differentially expressed*
 
 **2.4. Data exploration**<br/>
