@@ -5,7 +5,7 @@ This is the **Master branch**. Here, we can write any text using *Markdown* [(ht
 **This is the code from Dimitri**
 ```ruby
 "import pandas as pd\n",
-    "import numpy as np\n",
-    "import matplotlib.pyplot as plt"
+"import numpy as np\n",
+"import matplotlib.pyplot as plt"
 ```
 
