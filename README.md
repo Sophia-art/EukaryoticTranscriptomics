@@ -1,3 +1,8 @@
+**What we have:**<br/>
+read count tables: cDNA raw read counts aligned with STAR for 4 treatment and 4 control experiments
+Reference genome: considering one gene consisting of different exons
+Task: Which 
+
 **Using EdgeR for Differential Expression Analysis**<br/>
 [https://bioinformatics-core-shared-training.github.io/cruk-bioinf-sschool/Day3/Supplementary-RNAseq-practical.pdf]<br/>
 **1. read data**
