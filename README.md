@@ -1,6 +1,6 @@
 **What we have:**<br/>
-read count tables: cDNA raw read counts aligned with STAR for 4 treatment and 4 control experiments
-Reference genome: considering one gene consisting of different exons
+read count tables: cDNA raw read counts aligned with STAR for 4 treatment and 4 control experiments<br/>
+Reference genome: considering one gene consisting of different exons<br/>
 Task: 
 
 **Using EdgeR for Differential Expression Analysis**<br/>
