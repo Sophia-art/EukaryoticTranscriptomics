@@ -44,6 +44,7 @@ keep = data_func[data_func[data_func > 100].sum(1) >=4]
 **4. Data exploration**<br/>
 **5. Estimating the dispersion**<br/>
 **6. Differential Expression**<br/>
+blablabla
 
 
 
