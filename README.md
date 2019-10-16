@@ -32,6 +32,7 @@ keep = data_func[data_func[data_func > 100].sum(1) >=4]
 *Because we assume, that the majority of genes, in both the treated and untreated samples, are not differentially expressed*
 
 **4. Data exploration**<br/>
-**5. Estimating the dispersion**
+**5. Estimating the dispersion**<br/>
+**6. Differential Expression**<br/>
 
 
