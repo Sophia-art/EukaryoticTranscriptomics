@@ -4,7 +4,7 @@ Reference genome: considering one gene consisting of different exons<br/>
 
 **Using DESeq2**<br/>
 
-**Using limma/voom **<br/>
+**Using limma/voom**<br/>
 
 **Using EdgeR for Differential Expression Analysis**<br/>
 [https://bioinformatics-core-shared-training.github.io/cruk-bioinf-sschool/Day3/Supplementary-RNAseq-practical.pdf]<br/>
