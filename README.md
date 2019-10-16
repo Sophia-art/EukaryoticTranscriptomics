@@ -26,7 +26,8 @@ df.rename(columns = {'Unnamed: 0':'Entry'} ,inplace=True)
 data_func=data.apply(lambda x: (x/sum(x))*1000000,axis=0)
 ```
 ```ruby
-data.apply(lambda x: (x/sum(x))*1000000,axis=0)```
+data.apply(lambda x: (x/sum(x))*1000000,axis=0)
+```
 
 ```ruby
 data.apply(lambda x: (x/sum(x))*1000000,axis=0)
