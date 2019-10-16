@@ -1,8 +1,13 @@
-This is the **Master branch**. Here, we can write any text using *Markdown* [(https://guides.github.com/features/mastering-markdown/)] A really short interduction to get started with github is the following one: [(https://guides.github.com/activities/hello-world/
-)]. 
+**What we have:**<br/>
+read count tables: cDNA raw read counts aligned with STAR for 4 treatment and 4 control experiments<br/>
+Reference genome: considering one gene consisting of different exons<br/>
 
+**Using DESeq2**<br/>
 
-**This is the code from Dimitri**
+**Using limma/voom**<br/>
+
+**Using EdgeR for Differential Expression Analysis**<br/>
+[https://bioinformatics-core-shared-training.github.io/cruk-bioinf-sschool/Day3/Supplementary-RNAseq-practical.pdf]<br/>
 
 **1. read data**
 ```ruby
@@ -16,38 +21,30 @@ df = pd.read_csv('raw_countstdl.sec',sep='\t',index_col=False)
 df.rename(columns = {'Unnamed: 0':'Entry'} ,inplace=True)
 ```
 
-**2. Differential Expression Analysis by edgeR**<br/>
-[https://bioinformatics-core-shared-training.github.io/cruk-bioinf-sschool/Day3/Supplementary-RNAseq-practical.pdf]<br/>
-**2.1. Normalizing data by total count**<br/>
-*Why?*
+**2. Filtering Data**<br/>
 ```ruby
 data_func=data.apply(lambda x: (x/sum(x))*1000000,axis=0)
 ```
-
-*I tried to understand and tried this code out in easy examples:*
-```data.apply(lambda x: (x/sum(x))*1000000,axis=0)```
-, *but I dont understand it: Refers x not to each element in data? Should it not give always the same value within a column? Like in following easy example:*
+```ruby
+data.apply(lambda x: (x/sum(x))*1000000,axis=0)
+```
 
 ```ruby
 data.apply(lambda x: (x/sum(x))*1000000,axis=0)
 df.apply(lambda x: (x*2),axis=0)
 df.apply(lambda x: (sum(x))*1000000,axis=0) 
 ```
-
-*Or is sum(x) not constant but is the sum of all data of the column till the element (iterating from row 0 till the last row)?* 
-
-**2.2. Filtering data**<br/>
-Why? *Because we want to kick out data, where there is no count*
-
 ```ruby
 keep = data_func[data_func[data_func > 100].sum(1) >=4]
 ```
 
+**3. Normalizing with TMM (trimmed mean of M values as a normalization factor)**<br/>
+*Because we assume, that the majority of genes, in both the treated and untreated samples, are not differentially expressed*
 
-**2.3. Normalizing with TMM (trimmed mean of M values as a normalization factor)**<br/>
-Why? *Because we assume, that the majority of genes, in both the treated and untreated samples, are not differentially expressed*
+**4. Data exploration**<br/>
+**5. Estimating the dispersion**<br/>
+**6. Differential Expression**<br/>
 
-**2.4. Data exploration**<br/>
-**2.5. Estimating the dispersion**
+
 
 
