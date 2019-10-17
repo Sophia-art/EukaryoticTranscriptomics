@@ -1,6 +1,12 @@
-**What we have:**<br/>
-read count tables: cDNA raw read counts aligned with STAR for 4 treatment and 4 control experiments<br/>
-Reference genome: considering one gene consisting of different exons<br/>
+**Abstract:**<br/>
+- read count tables: cDNA raw read counts aligned with STAR for the conditions 4 treatment and 4 control experiments<br/>
+- Reference genome: This is one genome consisting of 45706 genes<br/>
+- Single values: Each condition has for each gene an integer number. 0 means "not transcribed" and high integer means transcribed, whereas the unit is linear (gene with integer score 2 is considered as two times more transcribed than a gene with integer score 1)<br/>
+- task: find genes, that are significant more or less transcribed in the treatment experiments than the control experiments.<br/>
+- Strategy: evaluating whether *DESeq2*, *limma/voom*, or *EdgeR* is the most suitable package and applying the best one:
+  - [x] analyzing whether the constraints for the usage of the packages are fulfilled in our data 
+  - [ ] analyzing comparisonments of the packages in literature
+  - [ ] finding out, which one gives the best results (criteria are (?) p-value, variance, graphs, boxplots etc)
 
 **Using DESeq2**<br/>
 
