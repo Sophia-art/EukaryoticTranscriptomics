@@ -1,11 +1,8 @@
 **Abstract:**<br/>
 - read count tables: cDNA raw read counts aligned with STAR for the conditions 4 treatment and 4 control experiments<br/>
 - Reference genome: This is one genome consisting of 45706 genes<br/>
-- Single values: Each condition has for each gene an integer number. 0 means "not transcribed" and high integer score means transcribed in a linear dependency:
- - *total read count associated with a gene (meta-feature) = the sum of reads associated with each of the exons (feature) that “belong” to that gene* [https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/05_counting_reads.html]
- 
-- The score unit is linear (gene with integer score 2 is considered as two times more transcribed than a gene with integer score 1) [internet page]<br/>
-- *RNA-seq was shown to detect lowly expressed transcripts while suﬀering from strongly reduced false positive rates in comparison to microarray based expression quantiﬁcation (Illumina, 2011; Nookaew et al., 2012; Zhao et al., 2014)∗.* 
+- Single values: Each condition has for each gene an integer number. 0 means "not transcribed" and high integer score means transcribed in a linear dependency:<br/>
+*total read count associated with a gene (meta-feature) = the sum of reads associated with each of the exons (feature) that “belong” to that gene* [https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/05_counting_reads.html] 
 - task: find genes, that are significant more or less transcribed in the treatment experiments than the control experiments.<br/>
 - Strategy: evaluating whether *DESeq2*, *limma/voom*, or *EdgeR* is the most suitable package and applying the best one:
   - [x] analyzing whether the constraints for the usage of the packages are fulfilled in our data 
