@@ -1,20 +1,72 @@
 **Abstract:**<br/>
 - read count tables: cDNA raw read counts aligned with STAR for the conditions 4 treatment and 4 control experiments<br/>
 - Reference genome: This is one genome consisting of 45706 genes<br/>
-- Single values: Each condition has for each gene an integer number. 0 means "not transcribed" and high integer means transcribed, whereas the unit is linear (gene with integer score 2 is considered as two times more transcribed than a gene with integer score 1)<br/>
+- Single values: Each condition has for each gene an integer number. 0 means "not transcribed" and high integer score means transcribed in a linear dependency:<br/>
+*total read count associated with a gene (meta-feature) = the sum of reads associated with each of the exons (feature) that “belong” to that gene* [https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/05_counting_reads.html] 
 - task: find genes, that are significant more or less transcribed in the treatment experiments than the control experiments.<br/>
 - Strategy: evaluating whether *DESeq2*, *limma/voom*, or *EdgeR* is the most suitable package and applying the best one:
   - [x] analyzing whether the constraints for the usage of the packages are fulfilled in our data 
   - [ ] analyzing comparisonments of the packages in literature
+  [http://chagall.med.cornell.edu/RNASEQcourse/Intro2RNAseq.pdf]
   - [ ] finding out, which one gives the best results (criteria are (?) p-value, variance, graphs, boxplots etc)
 
 **Using DESeq2**<br/>
+[http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html]
+inputs: 
+  - [x] *the number of sequence fragments that have been assigned to each gene.*
+  - [x] *in the form of a matrix of integer values. The value in the i-th row and the j-th column of the matrix tells how many reads can be assigned to gene i in sample j.*
+  - [x] *The values in the matrix should be un-normalized counts or estimated counts of sequencing reads. The DESeq2 model internally corrects for library size, so transformed or normalized values such as counts scaled by library size should not be used as input.*
+- [x] We have already a SummarizedExperiment input. Thus, the next steps would be: 
+1. pre-filtering: e.g. minimal pre-filtering to keep only rows that have at least 10 reads total.
+```ruby
+keep <- rowSums(counts(dds)) >= 10
+dds <- dds[keep,]
+```
+2. Note on factor levels: distinguish between control and treatment
+```ruby
+dds$condition <- factor(dds$condition, levels = c("untreated","treated"))
+```
+3. Collapsing technical replicates: *DESeq2 provides a function collapseReplicates which can assist in combining the counts from technical replicates into single columns of the count matrix. The term technical replicate implies multiple sequencing runs of the same library.*
+4. Differential expression analysis: a single function: DESeq<br/>
+Results are the *log2 fold changes, p values and adjusted p values. With no additional arguments to results, the log2 fold change and Wald test p value will be for the last variable in the design formula, and if this is a factor, the comparison will be the last level of this variable over the reference level*
+```ruby
+dds <- DESeq(dds)
+res <- results(dds)
+res
+```
+5. p value filtering by Independent hypothesis weighting: *A generalization of the idea of p value filtering is to weight hypotheses to optimize power. A Bioconductor package, IHW, is available that implements the method of Independent Hypothesis Weighting*
+6. MA-plot to show log2 fold change: * to a given variable over the mean of normalized counts for all the samples in the DESeqDataSet. Points will be colored red if the adjusted p value is less than 0.1.*
+(...)
 
 **Using limma/voom**<br/>
+[https://ucdavis-bioinformatics-training.github.io/2018-June-RNA-Seq-Workshop/thursday/DE.html]
+- [x] data input fits
+1. loading data
+2. preprocessing: Make groups "treatment" and "control"  --> Calculate normalization factors
+3. Voom transformation and calculation of variance weights: *Counts are transformed to log2 counts per million reads. A linear model is fitted to the log2 CPM for each gene, and the residuals are calculated. A smoothed curve is fitted to the sqrt(residual standard deviation) by average expression. The smoothed curve is used to obtain weights for each gene and sample that are passed into limma along with the log2 CPMs.*
+4. Fitting linear models in limma: Comparisons between groups (log fold-changes) are obtained as contrasts of these fitted linear models: Group "treatment" can be compared with group "control"
+Estimate contrast for each gene
+```ruby
+tmp <- contrasts.fit(fit, contr)
+```
+Empirical Bayes smoothing of standard errors
+```ruby
+tmp <- eBayes(tmp)
+```
+Answer what genes are most differntially expressed with the formula:
+```ruby
+top.table <- topTable(tmp, sort.by = "P", n = Inf)
+head(top.table, 20)
+```
+(...)
 
 **Using EdgeR for Differential Expression Analysis**<br/>
 [https://bioinformatics-core-shared-training.github.io/cruk-bioinf-sschool/Day3/Supplementary-RNAseq-practical.pdf]<br/>
-
+<br/>
+<br/>
+<br/>
+<br/>
+**Code of Dimitri**<br/>
 **1. read data**
 ```ruby
 import pandas as pd
