@@ -27,10 +27,37 @@ dds$condition <- factor(dds$condition, levels = c("untreated","treated"))
 ```
 3. Collapsing technical replicates: *DESeq2 provides a function collapseReplicates which can assist in combining the counts from technical replicates into single columns of the count matrix. The term technical replicate implies multiple sequencing runs of the same library.*
 4. Differential expression analysis: a single function: DESeq<br/>
-Results are 
-
+Results are the *log2 fold changes, p values and adjusted p values. With no additional arguments to results, the log2 fold change and Wald test p value will be for the last variable in the design formula, and if this is a factor, the comparison will be the last level of this variable over the reference level*
+```ruby
+dds <- DESeq(dds)
+res <- results(dds)
+res
+```
+5. p value filtering by Independent hypothesis weighting: *A generalization of the idea of p value filtering is to weight hypotheses to optimize power. A Bioconductor package, IHW, is available that implements the method of Independent Hypothesis Weighting*
+6. MA-plot to show log2 fold change: * to a given variable over the mean of normalized counts for all the samples in the DESeqDataSet. Points will be colored red if the adjusted p value is less than 0.1.*
+(...)
 
 **Using limma/voom**<br/>
+[https://ucdavis-bioinformatics-training.github.io/2018-June-RNA-Seq-Workshop/thursday/DE.html]
+- [x] data input fits
+1. loading data
+2. preprocessing: Make groups "treatment" and "control"  --> Calculate normalization factors
+3. Voom transformation and calculation of variance weights: *Counts are transformed to log2 counts per million reads. A linear model is fitted to the log2 CPM for each gene, and the residuals are calculated. A smoothed curve is fitted to the sqrt(residual standard deviation) by average expression. The smoothed curve is used to obtain weights for each gene and sample that are passed into limma along with the log2 CPMs.*
+4. Fitting linear models in limma: Comparisons between groups (log fold-changes) are obtained as contrasts of these fitted linear models: Group "treatment" can be compared with group "control"
+Estimate contrast for each gene
+```ruby
+tmp <- contrasts.fit(fit, contr)
+```
+Empirical Bayes smoothing of standard errors
+```ruby
+tmp <- eBayes(tmp)
+```
+Answer what genes are most differntially expressed with the formula:
+```ruby
+top.table <- topTable(tmp, sort.by = "P", n = Inf)
+head(top.table, 20)
+```
+(...)
 
 **Using EdgeR for Differential Expression Analysis**<br/>
 [https://bioinformatics-core-shared-training.github.io/cruk-bioinf-sschool/Day3/Supplementary-RNAseq-practical.pdf]<br/>
