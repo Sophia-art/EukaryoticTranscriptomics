@@ -16,8 +16,18 @@ inputs:
   - [x] *in the form of a matrix of integer values. The value in the i-th row and the j-th column of the matrix tells how many reads can be assigned to gene i in sample j.*
   - [x] *The values in the matrix should be un-normalized counts or estimated counts of sequencing reads. The DESeq2 model internally corrects for library size, so transformed or normalized values such as counts scaled by library size should not be used as input.*
 - [x] We have already a SummarizedExperiment input. Thus, the next steps would be: 
-      1. pre-filtering
-      
+1. pre-filtering: e.g. minimal pre-filtering to keep only rows that have at least 10 reads total.
+```ruby
+keep <- rowSums(counts(dds)) >= 10
+dds <- dds[keep,]
+```
+2. Note on factor levels: distinguish between control and treatment
+```ruby
+dds$condition <- factor(dds$condition, levels = c("untreated","treated"))
+```
+3. Collapsing technical replicates: *DESeq2 provides a function collapseReplicates which can assist in combining the counts from technical replicates into single columns of the count matrix. The term technical replicate implies multiple sequencing runs of the same library.*
+4. Differential expression analysis: a single function: DESeq<br/>
+Results are 
 
 
 **Using limma/voom**<br/>
