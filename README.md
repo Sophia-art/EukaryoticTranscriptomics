@@ -1,4 +1,4 @@
-***Abstract:***<br/>
+**Abstract:**<br/>
 - read count tables: cDNA raw read counts aligned with STAR for the conditions 4 treatment and 4 control experiments<br/>
 - Reference genome: This is one genome consisting of 45706 genes<br/>
 - Single values: Each condition has for each gene an integer number. 0 means "not transcribed" and high integer score means transcribed in a linear dependency:<br/>
@@ -7,6 +7,7 @@
 - Strategy: evaluating whether *DESeq2*, *limma/voom*, or *EdgeR* is the most suitable package and applying the best one:
   - [x] analyzing whether the constraints for the usage of the packages are fulfilled in our data 
   - [ ] analyzing comparisonments of the packages in literature
+  [http://chagall.med.cornell.edu/RNASEQcourse/Intro2RNAseq.pdf]
   - [ ] finding out, which one gives the best results (criteria are (?) p-value, variance, graphs, boxplots etc)
 
 **Using DESeq2**<br/>
@@ -65,7 +66,7 @@ head(top.table, 20)
 <br/>
 <br/>
 <br/>
-***Code of Dimitri***
+**Code of Dimitri**<br/>
 **1. read data**
 ```ruby
 import pandas as pd
