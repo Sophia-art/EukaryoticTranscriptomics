@@ -10,6 +10,15 @@
   - [ ] finding out, which one gives the best results (criteria are (?) p-value, variance, graphs, boxplots etc)
 
 **Using DESeq2**<br/>
+[http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html]
+inputs: 
+  - [x] *the number of sequence fragments that have been assigned to each gene.*
+  - [x] *in the form of a matrix of integer values. The value in the i-th row and the j-th column of the matrix tells how many reads can be assigned to gene i in sample j.*
+  - [x] *The values in the matrix should be un-normalized counts or estimated counts of sequencing reads. The DESeq2 model internally corrects for library size, so transformed or normalized values such as counts scaled by library size should not be used as input.*
+- [x] We have already a SummarizedExperiment input. Thus, the next steps would be: 
+      1. pre-filtering
+      
+
 
 **Using limma/voom**<br/>
 
