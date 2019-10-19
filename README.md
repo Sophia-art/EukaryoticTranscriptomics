@@ -1,4 +1,4 @@
-**Abstract:**<br/>
+***Abstract:***<br/>
 - read count tables: cDNA raw read counts aligned with STAR for the conditions 4 treatment and 4 control experiments<br/>
 - Reference genome: This is one genome consisting of 45706 genes<br/>
 - Single values: Each condition has for each gene an integer number. 0 means "not transcribed" and high integer score means transcribed in a linear dependency:<br/>
@@ -61,7 +61,11 @@ head(top.table, 20)
 
 **Using EdgeR for Differential Expression Analysis**<br/>
 [https://bioinformatics-core-shared-training.github.io/cruk-bioinf-sschool/Day3/Supplementary-RNAseq-practical.pdf]<br/>
-
+<br/>
+<br/>
+<br/>
+<br/>
+***Code of Dimitri***
 **1. read data**
 ```ruby
 import pandas as pd
