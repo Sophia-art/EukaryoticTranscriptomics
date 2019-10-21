@@ -114,7 +114,7 @@ pc <- prcomp(t(rlog.norm.counts)) 2
 plot(pc$x[,1], pc$x[,2],
 ```
 
-**Create an R enviornement in R**
+**Create an R environement in Anaconda**
 ```ruby
 conda create -n r_env r-essentials r-base
 ```
