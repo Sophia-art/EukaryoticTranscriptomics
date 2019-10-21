@@ -7,10 +7,13 @@ Considering: *STAR (...) use the entire genome as the reference and existing gen
 [https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/05_counting_reads.html] 
 - task: find genes, that are significant more or less transcribed in the treatment experiments than the control experiments.<br/>
 - Strategy: evaluating whether *DESeq2*, *limma/voom*, or *EdgeR* is the most suitable package and applying the best one:
-  - [x] analyzing whether the constraints for the usage of the packages are fulfilled in our data 
-  - [ ] analyzing comparisonments of the packages in literature
+  - [x] analyzing comparisonments of the packages in literature
   [http://chagall.med.cornell.edu/RNASEQcourse/Intro2RNAseq.pdf]
-  - [ ] finding out, which one gives the best results (criteria are (?) p-value, variance, graphs, boxplots etc)
+  - [x] analyzing whether the constraints are fulfilled<br/>
+  *Instead of using a linear model, DESeq2 and edgeR rely on a negative binomial model to fit the observed read counts to arrive at the estimate for the difference. Originally, read counts had been modeled using the Poisson distribution*<br/>
+  - [ ] finding out, which one gives the best results (criteria are p-value, confidential interval, power, (...))<br/>
+  *statistical test based on the null hypothesis that the difference is close to zero, which would mean that there is no difference in the gene expression values that could be explained by the conditions.*<br/>
+  implement the t-test, ANOVA
 
 **Using DESeq2**<br/>
 [http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html]
