@@ -1,3 +1,11 @@
+```ruby
+install.packages("BiocManager")
+library(BiocManager)
+BiocManager::install("DESeq2")
+library("DESeq2") 
+```
+
+
 **Abstract:**<br/>
 - read count tables: cDNA raw read counts aligned with STAR for the conditions 4 treatment and 4 control experiments<br/>
 - Reference genome: This is one genome consisting of 45706 (expected) genes / exons<br/>
