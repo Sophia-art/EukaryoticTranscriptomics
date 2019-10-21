@@ -117,6 +117,8 @@ plot(pc$x[,1], pc$x[,2],
 **Create an R environement in Anaconda**
 ```ruby
 conda create -n r_env r-essentials r-base
+conda activate r_env
+conda install r-BiocManager
 ```
 
 
