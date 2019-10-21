@@ -15,6 +15,12 @@ head(read.counts, n=5)
 names(read.counts)
 ```
 
+Question to everyone: It does not recognize DESeqDataSetFromMatrix. But it is a known object. See [https://www.rdocumentation.org/packages/DESeq2/versions/1.12.3/topics/DESeqDataSet-class]
+```ruby
+DESeq . ds <- DESeqDataSetFromMatrix ( countData = readcounts ,
+                                       25 colData = sample _info ,
+                                       26 design = ~ condition )
+DESeqDataSetFromMatrix
 sumOfRow = rowSums(read.counts)
 read.counts=cbind(read.counts,sumOfRow)
 read.counts.keep=subset(read.counts, read.counts$sumOfRow >0)
