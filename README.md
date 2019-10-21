@@ -30,7 +30,8 @@ dds$condition <- factor(dds$condition, levels = c("untreated","treated"))
 ```
 3. Collapsing technical replicates: *DESeq2 provides a function collapseReplicates which can assist in combining the counts from technical replicates into single columns of the count matrix. The term technical replicate implies multiple sequencing runs of the same library.*
 4. Differential expression analysis: a single function: DESeq<br/>
-Results are the *log2 fold changes, p values and adjusted p values. With no additional arguments to results, the log2 fold change and Wald test p value will be for the last variable in the design formula, and if this is a factor, the comparison will be the last level of this variable over the reference level*
+*DESeq2’s default method to normalize read counts to account for differences in sequencing depths is imple- mented in estimateSizeFactors() (..) for every gene (= row), determine the geometric mean of its read counts across all samples (yielding the ”pseudo-reference”, i.e. one value per gene), divide every value of the count matrix by the corresponding pseudo-reference value, for every sample (= column), determine the median of these ratios. This is the size factor.* [http://chagall.med.cornell.edu/RNASEQcourse/Intro2RNAseq.pdf]<br/>
+Results are the *log2 fold changes, p values and adjusted p values. With no additional arguments to results, the log2 fold change and Wald test p value will be for the last variable in the design formula, and if this is a factor, the comparison will be the last level of this variable over the reference level*<br/>
 ```ruby
 dds <- DESeq(dds)
 res <- results(dds)
@@ -39,6 +40,7 @@ res
 5. p value filtering by Independent hypothesis weighting: *A generalization of the idea of p value filtering is to weight hypotheses to optimize power. A Bioconductor package, IHW, is available that implements the method of Independent Hypothesis Weighting*
 6. MA-plot to show log2 fold change: * to a given variable over the mean of normalized counts for all the samples in the DESeqDataSet. Points will be colored red if the adjusted p value is less than 0.1.*
 (...)
+7. Transformation of read counts including variance shrinkage
 
 **Using limma/voom**<br/>
 [https://ucdavis-bioinformatics-training.github.io/2018-June-RNA-Seq-Workshop/thursday/DE.html]
@@ -68,6 +70,17 @@ head(top.table, 20)
 <br/>
 <br/>
 <br/>
+**Exploring global read count patterns: Pairwise correlation, hierarchical clustering or Principle Component Analysis**<br/>
+[http://chagall.med.cornell.edu/RNASEQcourse/Intro2RNAseq.pdf]<br/>
+*technical and biological replicates should show similar expression patterns while the expression patterns of, say, two experimental conditions should be more dissimilar.*<br/>
+*The Pearson correlation coefficient, r, is a measure of the strength of the linear relationship between two variables and is often used to assess the similarity of RNA-seq samples in a pair-wise fashion. It is defined as the covariance of two variables divided by the product of their standard deviation.*<br/>
+<br/>
+*The goal of Principle Component Analysis is to find groups of features (e.g., genes) that have something in common (e.g., certain patterns of expression across different samples), so that the information from thousands of features is captured and represented by a reduced number of groups.The result of PCA are principal components that represent the directions along which the variation in the original multi-dimensional data matrix is maximal.*
+```ruby
+pc <- prcomp(t(rlog.norm.counts)) 2
+plot(pc$x[,1], pc$x[,2],
+```
+<br/><br/><br/><br/>
 **Code of Dimitri**<br/>
 **1. read data**
 ```ruby
