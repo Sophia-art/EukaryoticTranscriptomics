@@ -10,6 +10,8 @@ load data and have a look how it looks like:
 read.counts=read.table("C:\\Users\\Sophia Schmidt\\Documents\\Uni\\Master\\Programming for Life Science\\raw_countstdl.txt")
 head(read.counts, n=5)
 names(read.counts)
+```
+
 sumOfRow = rowSums(read.counts)
 read.counts=cbind(read.counts,sumOfRow)
 read.counts.keep=subset(read.counts, read.counts$sumOfRow >0)
