@@ -3,6 +3,11 @@ install.packages("BiocManager")
 library(BiocManager)
 BiocManager::install("DESeq2")
 library("DESeq2") 
+
+
+read.counts=read.table("C:\\Users\\Sophia Schmidt\\Documents\\Uni\\Master\\Programming for Life Science\\raw_countstdl.txt")
+head(read.counts, n=5)
+names(read.counts)
 ```
 
 
