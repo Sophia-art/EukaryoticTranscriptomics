@@ -3,6 +3,7 @@ install packages:
 install.packages("BiocManager")
 library(BiocManager)
 BiocManager::install("DESeq2")
+install.packages("DESeq2")
 library("DESeq2") 
 ```
 load data and have a look how it looks like:
