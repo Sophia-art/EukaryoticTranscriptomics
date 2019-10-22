@@ -1,6 +1,3 @@
-*Make Sure you use the right Browser!!!*
-Which, apparently, is not Internet explorer...
-
 install packages:
 ```ruby
 install.packages("BiocManager")
