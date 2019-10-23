@@ -1,0 +1,38 @@
+library(BiocManager)
+library('edgeR')
+
+rawdata <- read.delim("raw_countstdl.sec", check.names=FALSE, stringsAsFactors=FALSE)
+head(rawdata)
+#use the 4th example from: https://bioinformatics-core-shared-training.github.io/cruk-bioinf-sschool/Day3/Supplementary-RNAseq-practical.pdf
+#use chapter 2.7 in
+
+y <- DGEList(counts=rawdata[,4:9], genes=rawdata[,1:3])
+
+y <- DGEList(counts=rawdata, group = Treat)
+y
+y$samples
+
+keep <- filterByExpr(y)
+y <- y[keep, , keep.lib.sizes=FALSE]
+y
+
+y <- calcNormFactors(y)
+y$samples
+#A normalization factor below one indicates that a small number of high count genes are monopolizing the sequencing,
+#causing the counts for other genes to be lower than would be usual given the library size. As a result, the library size will be scaled down, analogous to scaling the counts upwards in that
+#library. Conversely, a factor above one scales up the library size, analogous to downscaling the counts.
+
+plotMDS(y, col=rep(1:2, each=4))
+
+Treat <- factor(substring(colnames(rawdata),1,6))
+Treat <- relevel(Treat, ref="ctl1")
+Time <- factor(substring(colnames(rawdata),5,5))
+#Problem with ctl1 in Treat: We need to iterate over all ctl and treat. But the word ctl and treat have not the same amount of letters,
+#therefore we cannot fix 4 letters so it looks at the numbers behind (1 to 4)
+
+design <- model.matrix(~Time+Time:Treat)
+
+logFC <- predFC(y,design,prior.count=1,dispersion=0.05)
+#doesn't work, yet, because Time & Treat doen't do it's job, yet
+
+cor(logFC[,4:6])
