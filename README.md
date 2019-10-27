@@ -22,7 +22,12 @@ row.names(read_counts) <- read_counts$Geneid
 read_counts <- read_counts[, -c(1:6)] # Exclude the columns that do not contain read counts
  
 # Create a data frame with metadata
+# Old command:
 sample_info <- data.frame(condition = "control, treatment", row.names = names(read_counts ))
+
+#New command:
+sample_info <- data.frame(condition=rep(c("control","treatment"), each=4),row.names=names(read_counts))
+sample_info
  
 # Generate the DESeqDataSet
 DESeq.ds <- DESeqDataSetFromMatrix(countData = readcounts,

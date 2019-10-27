@@ -42,3 +42,4 @@ boxplot(log.norm.counts, notch = TRUE ,
              main = "log2-transformed read counts",
               ylab = "log2(read_counts)")
 ```
+
