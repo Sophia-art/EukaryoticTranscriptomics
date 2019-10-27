@@ -1,4 +1,4 @@
-how to do it:
+**how to do it:
 [http://www.genomicdataanalysis.com/genomicdatatype/rna-seq/]
 ```ruby
 library(DESeq2)
