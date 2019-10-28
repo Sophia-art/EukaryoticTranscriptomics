@@ -159,4 +159,27 @@ keep = data_func[data_func[data_func > 100].sum(1) >=4]
 **5. Estimating the dispersion**<br/>
 **6. Differential Expression**<br/>
 
+**7. Gene Ontology**<br/>
+```ruby
 
+BiocManager::install("GO.db")
+library("GO.db")
+BiocManager::install("org.Mm.eg.db")
+library("org.Mm.eg.db")
+
+gns <- select(org.Mm.eg.db, row.names(x), c("ENTREZID","SYMBOL"),"ENSEMBL")
+gns <- gns[!duplicated(gns[,1]),]
+
+# Create DGEList object
+y <- DGEList(counts=x,group=Treat,genes=gns)
+# run the whole analysis
+
+# Do GE analysis on DE genes
+go <- goana(de=DEnames,geneid="ENTREZID",species="Mm")
+topGO(go,sort="Up",n=30,truncate=30)
+
+# Analysis on the whole filtered sample
+
+go2 <- goana(de=lrt,geneid="ENTREZID",species="Mm")
+topGO(go2,n=30,truncate.term=50)
+```
